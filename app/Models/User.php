@@ -22,7 +22,6 @@ class User extends Authenticatable implements JWTSubject
         'birthDate' => 'date',
     ];
 
-    // JWT Methods
     public function getJWTIdentifier()
     {
         return $this->getKey();

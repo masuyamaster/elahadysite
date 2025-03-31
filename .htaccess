@@ -18,8 +18,15 @@
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
 
-    # Send Requests To Front Controller...
+    # Allow API requests (POST, PUT, DELETE, OPTIONS)
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^ index.php [L]
+    
+    <IfModule mod_headers.c>
+        Header Set Access-Control-Allow-Origin "*"
+        Header Set Access-Control-Allow-Methods "GET, POST, OPTIONS, PUT, DELETE"
+        Header Set Access-Control-Allow-Headers "Authorization, Content-Type"
+    </IfModule>
+
 </IfModule>
